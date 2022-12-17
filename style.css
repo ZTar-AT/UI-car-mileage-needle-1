@@ -1,0 +1,311 @@
+:root {
+    /* ฟอนต์ */
+    --font: Arial, Helvetica, sans-serif;
+    --font_color:white;
+    /* ความเร็ว */
+    --speed: 100;
+    --color_speed: white;
+    /* อัตราเร่งที่ผู้เล่นทำได้สูงสุด */
+    --acceleration: 250;
+
+    /* เกียร์ */
+    --gear: 50;
+    --color_gear: white;
+
+    /* น้ำมัน */
+    --oil: 50;
+    --color_oil: white;
+
+   
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1f79c2;
+
+}
+
+.container {
+
+    width: 200px;
+    height: 200px;
+    /* background-color: black; */
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 2vw;
+    transform: scale(1);
+
+
+}
+.containercircle{
+    position: absolute;
+    width: 25px;
+bottom: 15%;   display: grid;
+gap: 3px;   
+
+}
+.containercircle > img{
+    
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid white;
+    border-radius: 50%;
+    padding: 1px; 
+    
+    /* filter: brightness(0.8); */
+}
+.circle_gear{
+    width: 14px;
+    
+    height: 14px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font);
+    color: white;
+
+    text-align: center;
+    border: 1.5px solid white;
+    border-radius: 50%;
+    padding: 1px;    
+    filter: brightness(0.8);
+}
+.containercircle > img:nth-child(1){
+    margin-left: -10px;
+ 
+}
+.containercircle > .circle_gear:nth-child(2){
+    margin-left: -10px;
+   
+}
+.containercircle > img:nth-child(3){
+    margin-left: -5px;
+    filter: brightness(0) invert(1);
+    
+}
+.containercircle > img:nth-child(4){
+    margin-left: 2px;
+}
+.containercircle > img:nth-child(5){
+  position: absolute;
+  bottom: 0;
+    margin-left: 190px;
+    
+}
+/* .circleimg{
+    width: 30px;
+    height: 30px;
+    background-color: #0f2130;
+
+} */
+.main {
+    clip-path: url(#svgClip);
+    position: relative;
+   
+    width: 100%;
+    height: 100%;
+    background-color: #5e6165;
+    
+}
+
+.main1 {
+    clip-path: url(#svgClip1);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #5e6165;
+}
+
+.main2 {
+    clip-path: url(#svgClip2);
+    position: absolute;
+    right: 1%;
+    width: 100%;
+    height: 100%;
+    background-color: #5e6165;
+}
+.main3 {
+    position: absolute;
+    left: 37%;
+    top: 65%;
+    width: 30%;
+    height: 20%;
+    justify-items: center;
+   display: grid;
+    /* background-color: #0c5fcb; */
+}
+.main3 > img{ position: absolute;
+    width: 40%;
+    height: 100%;
+}
+.car_wheel {
+    border-radius: 20%;
+    position: relative;
+    background-color: white;
+    width: 4px;
+    height: 10px;
+  }
+.column {
+    float: left;
+    position: absolute;
+    top: 10%;
+    left: 68%;
+    width: 20%;
+   
+
+  }
+.column:nth-child(1){
+    left: 25%;
+}
+.main,.main1,.main2,.main3{
+    transform: scale(1);
+}
+.progress1,
+.progress2,
+.progress3 {
+    position: absolute;
+    left: 50%;
+    top: 53.5%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    /* background-color: aqua; */
+}
+
+.progress1 svg,
+.progress2 svg,
+.progress3 svg {
+    transform: rotate(134deg);
+    width: 100%;
+    height: 100%;
+
+    background-color: #5e6165;
+}
+
+.progress2 svg {
+    transform: rotate(131deg);
+}
+
+
+
+.progress2 svg circle {
+
+    fill: transparent;
+    stroke: var(--color_speed);
+    stroke-width: 50;
+    stroke-dasharray: 1000;
+   
+    stroke-dashoffset: calc(1000 - ((120 * var(--gear)) / 100));
+    transition: 0.3s;
+
+}
+
+.progress3 svg {
+    transform: rotate(78deg);
+    width: 110%;
+    height: 110%;
+}
+
+
+
+.progress3 svg circle {
+
+    fill: transparent;
+    stroke: var(--color_oil);
+    stroke-width: 50;
+
+    stroke-dasharray: 1000;
+    /* stroke-dashoffset: 1600; */
+    
+    stroke-dashoffset: calc(1600 + ((108 * var(--oil)) / 100));
+    transition: 0.3s;
+
+}
+
+
+.progress1 svg circle {
+    /* background-color: red; */
+    fill: transparent;
+    stroke: var(--color_gear);
+    stroke-width: 50;
+
+    stroke-dasharray: 1570;
+    stroke-dashoffset:   calc(1570 - ((380 * var(--speed)) / var(--acceleration))) ;
+   
+    transition: 0.3s;
+
+}
+
+
+.dotBox {
+    position: absolute;
+
+    transform: rotate(calc(360deg * ((var(--speed) * 0.745) / var(--acceleration))));
+
+    inset: 0px;
+}
+
+.dotBox::before {
+    content: '';
+    position: absolute;
+    bottom: 17%;
+    left: 12.6%;
+    transform: rotate(-43deg);
+    width: 10%;
+    height: 3%;
+
+    background-color: var(--color_speed);
+}
+
+.maintag {
+   
+   
+    font-weight: bold;
+    font-family: var(--font);
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 53.5%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    /* background-color: aqua; */
+
+
+}
+
+p {
+    font-size: 80%;
+    font-weight: bold;
+    color: var(--font_color);
+    text-align: center;
+}
+.speedtag{
+    font-size: 300%;
+    margin-top: -2%;
+  
+    font-weight: bold;
+  
+    font-family: var(--font);
+    color: var(--font_color);
+    text-align: center;
+}
+.speedtag::before{
+    content: '0';
+    color: #5e6165;
+}
+
+
+
+  @media only screen and (min-width: 1400px) {
+    .container{
+        transform: scale(1.2);
+        right: 5%;
+        bottom: 2%;
+    }
+  }
